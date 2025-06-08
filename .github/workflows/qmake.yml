@@ -20,7 +20,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: magikoopa-linux
-        path: Magikoopa
+        path: MagikoopaUI/Magikoopa
   build-windows:
 
     runs-on: windows-latest
@@ -30,7 +30,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '5.15.*'
+        arch: 'win64_msvc2022_64'
     - name: make
       run: cd MagikoopaUI && qmake Magikoopa.pro && make
     - uses: actions/upload-artifact@v4
