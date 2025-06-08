@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  build-linux:
 
     runs-on: ubuntu-latest
 
@@ -16,4 +16,22 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
     - name: make
-      run: cd MagikoopaUI && qmake Magikoopa.pro
+      run: cd MagikoopaUI && qmake Magikoopa.pro && make
+    - uses: actions/upload-artifact@v4
+      with:
+        name: magikoopa-linux
+        path: Magikoopa
+  build-windows:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+    - name: make
+      run: cd MagikoopaUI && qmake Magikoopa.pro && make
+    - uses: actions/upload-artifact@v4
+      with:
+        name: magikoopa-windows
+        path: Magikoopa.exe
